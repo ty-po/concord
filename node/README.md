@@ -1,5 +1,7 @@
 # node
 
+https://www.npmjs.com/package/actioncable-vue
+
 > My groovy Vue project
 
 ## Commands

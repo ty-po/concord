@@ -1,5 +1,5 @@
-require_relative './src/app'
+# This file is used by Rack-based servers to start the application.
 
-#use Rack::Static, :urls => ["/css", "/js"], :root => 'public', :index => 'index.html'
+require_relative 'config/environment'
 
-run App.new
+run Rails.application
