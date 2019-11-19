@@ -4,6 +4,8 @@ https://medium.com/@dakota.lillie/using-action-cable-with-react-c37df065f296
 
 https://guides.rubyonrails.org/api_app.html
 
+https://www.engineyard.com/blog/rails-encrypted-credentials-on-rails-5.2
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
