@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def spotify
-    spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
+    spotify_response = request.env['omniauth.auth']
+    spotify_user = RSpotify::User.new(spotify_response)
     # Now you can access user's private data, create playlists and much more
 
     # Access private data
@@ -17,6 +18,10 @@ class UsersController < ApplicationController
     spotify_user.top_tracks(time_range: 'short_term') #=> (Track array)
 
     # Check doc for more
-    render json: spotify_user.top_tracks, status: :ok
+    render json: spotify_response, status: :ok
+  end
+  def discord
+    discord_response = request.env['omniauth.auth']
+    render json: discord_response, status: :ok
   end
 end

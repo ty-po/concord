@@ -6,25 +6,13 @@ https://guides.rubyonrails.org/api_app.html
 
 https://www.engineyard.com/blog/rails-encrypted-credentials-on-rails-5.2
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Setup
 
-Things you may want to cover:
+- This
+- that
+- then
 
-* Ruby version
+# TODO
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Create User Model
+- Implement JWT Authentication/session
