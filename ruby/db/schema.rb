@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_11_011710) do
+ActiveRecord::Schema.define(version: 2019_12_11_194610) do
 
   create_table "auth_providers", force: :cascade do |t|
     t.text "auth"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2019_12_11_011710) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "provider"
+    t.string "uid"
     t.index ["user_id"], name: "index_auth_providers_on_user_id"
   end
 
