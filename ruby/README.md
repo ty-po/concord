@@ -16,6 +16,10 @@ https://www.engineyard.com/blog/rails-encrypted-credentials-on-rails-5.2
 
 - ~Create User Model~
 - ~Implement JWT Authentication/session~
-- Functionalize login so it can be extended to different providers easier
+- ~self signed ssl~
+- ~Functionalize login so it can be extended to different providers easier~
 - Testing for login stuffs
 - Database constraints/model tests or whatever its called in ruby for uniqueness of username and uid++provider
+- ActionCable frameworking Rails
+- ActionCable frameworking Vue
+- wss support in nginx
