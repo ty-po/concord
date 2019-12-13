@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
+  resources :users
+  resources :messages
+  resources :channels
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/auth/spotify/callback', to: 'users#spotify'
   get '/auth/discord/callback', to: 'users#discord'

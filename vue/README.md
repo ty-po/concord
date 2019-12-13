@@ -1,5 +1,11 @@
 # vue
 
+# TODO
+
+- Set up wss passthrough
+- Fix autorefresh
+- ActionCable frameworking
+
 ## Project setup
 ```
 yarn install
