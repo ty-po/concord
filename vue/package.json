@@ -69,7 +69,6 @@
   "vue": {
     "devServer": {
       "host": "0.0.0.0",
-      "public": "dev.ty-po.com",
       "disableHostCheck": true
     }
   }

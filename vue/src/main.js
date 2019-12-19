@@ -9,8 +9,8 @@ Vue.config.productionTip = false;
 Vue.use(ActionCableVue, {
   debug: true,
   debugLevel: 'all',
-  connectionUrl: 'wss://api.ty-po.com/cable',
-  connectImmediately: true,
+  connectionUrl: 'ws://localhost:3000/cable',
+  connectImmediately: false,
 });
 
 new Vue({
@@ -24,17 +24,29 @@ new Vue({
     };
   },
   channels: {
-    ChatChannel: {
-      connected() {},
+    chat_channel_public: {
+      connected() {
+        console.log('I am connected to the public chat channel.');
+        this.sendMessage();
+        this.message = 'Number 2';
+        this.sendMessage();
+      },
       rejected() {},
-      received(data) { console.log(data); },
+      received(data) {
+        console.log('I got this data', data);
+      },
       disconnected() {},
+    },
+    chat_channel_private: {
+      connected() {
+        console.log('I am connected to the private chat channel.');
+      },
     },
   },
   methods: {
     sendMessage() {
       this.$cable.perform({
-        channel: 'ChatChannel',
+        channel: 'chat_channel_public',
         action: 'send_message',
         data: {
           content: this.message,
@@ -43,10 +55,13 @@ new Vue({
     },
   },
   mounted() {
-    this.$cable.subscribe({
-      channel: 'ChatChannel',
-      room: 'public',
-    });
+    this.$cable.subscribe(
+      {
+        channel: 'ChatChannel',
+        room: 'public',
+      },
+      'chat_channel_public',
+    );
   },
 
 

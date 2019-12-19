@@ -8,9 +8,11 @@ https://www.engineyard.com/blog/rails-encrypted-credentials-on-rails-5.2
 
 # Setup
 
-- This
-- that
-- then
+- Use RVM to install rails 2.3.3
+- bundle install
+- setup auth secrets (or dont)
+- hostname/ip configuration
+- rake db:migrate
 
 # TODO
 
