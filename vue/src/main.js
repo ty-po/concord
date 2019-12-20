@@ -33,13 +33,16 @@ new Vue({
       },
       rejected() {},
       received(data) {
-        console.log('I got this data', data);
+        console.log('public got this data', data);
       },
       disconnected() {},
     },
     chat_channel_private: {
       connected() {
         console.log('I am connected to the private chat channel.');
+      },
+      recieved(data) {
+        console.log('private got this data', data);
       },
     },
   },
@@ -61,6 +64,13 @@ new Vue({
         room: 'public',
       },
       'chat_channel_public',
+    );
+    this.$cable.subscribe(
+      {
+        channel: 'ChatChannel',
+        room: 'private',
+      },
+      'chat_channel_private',
     );
   },
 

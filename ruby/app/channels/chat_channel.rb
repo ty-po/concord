@@ -14,7 +14,7 @@ class ChatChannel < ApplicationCable::Channel
     #  data
     #)
 
-    ActionCable.server.broadcast 'public', data
+    ActionCable.server.broadcast "public", data
 
   end
 end
