@@ -9,7 +9,7 @@ Vue.config.productionTip = false;
 Vue.use(ActionCableVue, {
   debug: true,
   debugLevel: 'all',
-  connectionUrl: 'wss://api.ty-po.com/cable',//'ws://localhost:3000/cable',
+  connectionUrl: 'wss://api.ty-po.com/cable', // 'ws://localhost:3000/cable',
   connectImmediately: false,
 });
 
