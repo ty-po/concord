@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
     user = User.find_by_id(session[:user_id])
 
-    user = handle_oauth_response(oauth_response, AuthProvider.providers[:discord], user)
+    user = handle_oauth_response(oauth_response, AuthProvider.providers[:spotify], user)
 
     session[:user_id] = user.id
 
