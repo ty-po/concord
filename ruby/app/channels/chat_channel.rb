@@ -19,11 +19,10 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def get_user()
-    user = User.includes(:auth_provider).find_by_id(session[:user_id])
-    if user
-      ActionCable.server.broadcast "public", user.auth_provider
+    if current_user
+      ActionCable.server.broadcast "public", current_user.auth_provider
     else
-      ActionCable.server.broadcast "public", user
+      ActionCable.server.broadcast "public", current_user
     end
   end
 end
