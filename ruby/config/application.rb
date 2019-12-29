@@ -35,7 +35,7 @@ module Ruby
       RSpotify::authenticate(Rails.application.credentials.spotify[:client_id], Rails.application.credentials.spotify[:client_secret])
     end
 
-    config.session_store :cookie_store, key: '_interslice_session'
+    config.session_store :cookie_store, key: '_concord_session', domain: '.ty-po.com'
     config.middleware.use ActionDispatch::Cookies # Required for all session management
     config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
   end

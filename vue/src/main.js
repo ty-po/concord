@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import ActionCableVue from 'actioncable-vue';
+import axios from 'axios';
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -12,6 +13,12 @@ Vue.use(ActionCableVue, {
   connectionUrl: 'wss://api.ty-po.com/cable', // 'ws://localhost:3000/cable',
   connectImmediately: false,
 });
+
+
+axios.defaults.xsrfCookieName = 'CSRF-TOKEN';
+axios.defaults.xsrfHeaderName = 'X-CSRF-Token';
+axios.defaults.withCredentials = true;
+
 
 new Vue({
   router,
@@ -30,6 +37,7 @@ new Vue({
         this.sendMessage();
         this.message = 'Number 2';
         this.sendMessage();
+        this.getAuth();
       },
       rejected() {},
       received(data) {
@@ -56,8 +64,20 @@ new Vue({
         },
       });
     },
+    getAuth() {
+      this.$cable.perform({
+        channel: 'chat_channel_public',
+        action: 'get_user',
+      });
+    },
   },
   mounted() {
+    axios
+      .get('https://api.ty-po.com/auth')
+      .then((response) => {
+        console.log(response);
+        this.data = response;
+      });
     this.$cable.subscribe(
       {
         channel: 'ChatChannel',
@@ -73,6 +93,4 @@ new Vue({
       'chat_channel_private',
     );
   },
-
-
 }).$mount('#app');

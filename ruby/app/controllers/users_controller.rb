@@ -20,7 +20,7 @@ end
 
 class UsersController < ApplicationController
   include UsersHelper
-
+  
   def spotify
     oauth_response = request.env['omniauth.auth']
 
@@ -30,7 +30,8 @@ class UsersController < ApplicationController
 
     session[:user_id] = user.id
 
-    render json: user, status: :ok
+    #render json: user, status: :ok
+    redirect_to 'https://dev.ty-po.com'
   end
 
   def discord
@@ -42,7 +43,8 @@ class UsersController < ApplicationController
 
     session[:user_id] = user.id
 
-    render json: user, status: :ok
+    #render json: user, status: :ok
+    redirect_to 'https://dev.ty-po.com'
   end
 
   def debug

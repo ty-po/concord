@@ -1,5 +1,19 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="home">
+    <img alt="Vue logo" src="../assets/logo.png">
+    <LoginButtons provider="spotify"/>
+    <LoginButtons provider="discord"/>
   </div>
 </template>
+
+<script>
+// @ is an alias to /src
+import LoginButtons from '@/components/LoginButtons.vue';
+
+export default {
+  name: 'home',
+  components: {
+    LoginButtons,
+  },
+};
+</script>
