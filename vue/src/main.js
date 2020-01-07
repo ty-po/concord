@@ -20,15 +20,13 @@ axios.defaults.xsrfHeaderName = 'X-CSRF-Token';
 axios.defaults.withCredentials = true;
 
 
-new Vue({
+const app = new Vue({
   router,
   store,
   render: h => h(App),
 
-  data() {
-    return {
-      message: 'Hello world',
-    };
+  data: {
+    message: 'Hello world',
   },
   channels: {
     chat_channel_public: {
@@ -93,4 +91,6 @@ new Vue({
       'chat_channel_private',
     );
   },
-}).$mount('#app');
+});
+
+app.$mount('#app');
