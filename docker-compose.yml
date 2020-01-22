@@ -4,14 +4,18 @@ services:
     image: postgres
     volumes:
       - /var/lib/postgresql/data
-  web:
+  api:
     environment:
         - RAILS_MASTER_KEY
-    build: .
+    build: ./ruby
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - .:/myapp
+      - ./ruby:/myapp
     ports:
       - "3000:3000"
     depends_on:
       - db
+  web:
+    build: ./vue
+    ports:
+      - "8080:8080"
