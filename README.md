@@ -1,3 +1,4 @@
+# Ops
 Global npm packages
 
 npm install yarn -g
@@ -29,3 +30,9 @@ created using https://www.npmjs.com/package/create-vue-app
 - docker-compose run api rake db:create
 - docker-compose run api rake db:migrate
 
+# TODO
+
+- wds server port forwarding
+- auth setup for ruby credentials (probably incant the edit function and do it manually)
+- route two containers together when in dev mode
+- make current "prod" deploy from containter//gitops
