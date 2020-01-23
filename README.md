@@ -25,10 +25,16 @@ created using https://www.npmjs.com/package/create-vue-app
 
 
 - docker-compose build
-- on host machine set $RAILS_MASTER_KEY to contents of config/master.key
+- on host machine set $RAILS_MASTER_KEY to contents of config/master.key (this isnt working)
+- either copy config/master.key in or set up a new secrets file using this command `()()()` with this format: ()()()
 - docker-compose up
 - docker-compose run api rake db:create
 - docker-compose run api rake db:migrate
+
+# Prod
+
+- command for vue is `yarn prod`
+- command for rails is `rails server -e production`
 
 # TODO
 

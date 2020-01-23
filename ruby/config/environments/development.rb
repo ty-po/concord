@@ -52,5 +52,9 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.action_cable.allowed_request_origins = ['https://dev.ty-po.com', 'http://localhost:8080']
+  config.web_host = "http://localhost:8080"
+  config.session_store :cookie_store, key: '_concord_session'
+
+  config.action_cable.allowed_request_origins = [config.web_host]
+  config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
 end

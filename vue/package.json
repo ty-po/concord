@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "prod": "yarn serve --mode production",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
@@ -70,7 +71,6 @@
   "vue": {
     "devServer": {
       "host": "0.0.0.0",
-      "public": "dev.ty-po.com",
       "disableHostCheck": true
     }
   }

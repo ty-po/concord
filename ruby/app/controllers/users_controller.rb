@@ -30,8 +30,7 @@ class UsersController < ApplicationController
 
     session[:user_id] = user.id
 
-    #render json: user, status: :ok
-    redirect_to 'https://dev.ty-po.com'
+    redirect_to Rails.application.config.web_host
   end
 
   def discord
@@ -43,8 +42,7 @@ class UsersController < ApplicationController
 
     session[:user_id] = user.id
 
-    #render json: user, status: :ok
-    redirect_to 'https://dev.ty-po.com'
+    redirect_to Rails.application.config.web_host
   end
 
   def debug

@@ -10,7 +10,8 @@ Vue.config.productionTip = false;
 Vue.use(ActionCableVue, {
   debug: true,
   debugLevel: 'all',
-  connectionUrl: 'wss://api.ty-po.com/cable', // 'ws://localhost:3000/cable',
+  // connectionUrl: 'wss://api.ty-po.com',
+  connectionUrl: `${process.env.VUE_APP_API_HOSTNAME}/cable`,
   connectImmediately: false,
 });
 
@@ -25,8 +26,11 @@ const app = new Vue({
   store,
   render: h => h(App),
 
-  data: {
-    message: 'Hello world',
+  data() {
+    return {
+      message: 'Hello world',
+      api_host: process.env.VUE_APP_API_HOSTNAME,
+    };
   },
   channels: {
     chat_channel_public: {
@@ -71,7 +75,8 @@ const app = new Vue({
   },
   mounted() {
     axios
-      .get('https://api.ty-po.com/auth')
+      // .get('https://api.ty-po.com/auth')
+      .get(`${this.api_host}/auth`)
       .then((response) => {
         console.log(response);
         this.data = response;
