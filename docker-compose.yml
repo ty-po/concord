@@ -27,7 +27,7 @@ services:
       - api
   dev:
     #image: typo/dev
-    build: ./vm
+    build: ./dev
     ports:
       - "2222:22"
     command: bash -c "service ssh restart && tail -f /var/log/auth.log | grep 'sshd'"
