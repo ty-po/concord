@@ -25,3 +25,10 @@ services:
       - ./vue:/app
     depends_on:
       - api
+  dev:
+    image: typo/dev
+    ports:
+      - "2222:22"
+    command: bash -c "service ssh restart && tail -f /var/log/auth.log | grep 'sshd'"
+    volumes:
+      - ./:/home/user/concord
