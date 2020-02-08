@@ -26,7 +26,8 @@ services:
     depends_on:
       - api
   dev:
-    image: typo/dev
+    #image: typo/dev
+    build: ./vm
     ports:
       - "2222:22"
     command: bash -c "service ssh restart && tail -f /var/log/auth.log | grep 'sshd'"
