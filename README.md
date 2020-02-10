@@ -32,12 +32,13 @@ created using https://www.npmjs.com/package/create-vue-app
 
 ### Docker compose steps
 - make a private/public key pair for ssh, rename public key to `authorized_keys` and place in `./vm`
+- set your external host name (localhost if you're running locally. your external IP or domain if on GCP) with `export CONCORD_EXTERNAL_HOST="localhost"` 
 - docker-compose build
-- on host machine set $RAILS_MASTER_KEY to contents of config/master.key (this isnt working)
-- either copy config/master.key in or set up a new secrets file using this command `()()()` with this format: ()()()
+- either copy ruby/config/master.key in or set up a new secrets file using this command `()()()` with this format: ()()()
 - docker-compose up
 - docker-compose run api rake db:create
 - docker-compose run api rake db:migrate
+
 - ssh into your external ip at port 2222 to get into your development instance of debian
 
 # Prod

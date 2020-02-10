@@ -1,0 +1,10 @@
+version: '3'
+services:
+  dev:
+    #image: typo/dev
+    build: .
+    ports:
+      - "2222:22"
+    command: bash -c "service ssh restart && tail -f /var/log/auth.log | grep 'sshd'"
+    volumes:
+      - ../:/home/user/concord

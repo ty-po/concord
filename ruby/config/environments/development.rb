@@ -52,7 +52,8 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.web_host = "http://localhost:8080"
+  config.web_host = ENV['CONCORD_EXTERNAL_HOST'] || "http://localhost:8080"
+
   config.session_store :cookie_store, key: '_concord_session'
 
   config.action_cable.allowed_request_origins = [config.web_host]
