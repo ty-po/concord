@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: web
+  name: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: web
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: web
+    spec:
+      containers:
+      - args:
+        - bash
+        - -c
+        - rm -rf /app/node_modules && ln -s /data/node_modules /app/ && yarn serve
+        image: typo/web
+        imagePullPolicy: ""
+        name: web
+        ports:
+        - containerPort: 8080
+        resources: {}
+        #volumeMounts:
+        #- mountPath: /app
+        #  name: web-claim0
+      restartPolicy: Always
+      serviceAccountName: ""
+      #volumes:
+      #- name: web-claim0
+      #  persistentVolumeClaim:
+      #    claimName: web-claim0
+status: {}
