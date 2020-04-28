@@ -30,7 +30,7 @@ spec:
         - -c
         - rm -rf /app/node_modules && ln -s /data/node_modules /app/ && yarn serve
         image: typo/web
-        imagePullPolicy: ""
+        imagePullPolicy: Always
         name: web
         ports:
         - containerPort: 8080
