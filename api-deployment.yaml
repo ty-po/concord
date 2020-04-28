@@ -28,6 +28,13 @@ spec:
       - env:
           - name: RUBYOPT
             value: W:no-deprecated -W:no-experimental
+          - name: RAILS_MASTER_KEY
+            valueFrom:
+              secretKeyRef:
+                name: api-secret
+                key: master.key
+          - name: CONCORD_EXTERNAL_HOST
+            value: http://localhost:30808
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
