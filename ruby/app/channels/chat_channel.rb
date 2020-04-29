@@ -20,7 +20,7 @@ class ChatChannel < ApplicationCable::Channel
 
   def get_user()
     if current_user
-      ActionCable.server.broadcast "private", current_user.auth_provider
+      ActionCable.server.broadcast "private", current_user
     else
       ActionCable.server.broadcast "private", current_user
     end
