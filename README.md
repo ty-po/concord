@@ -8,6 +8,7 @@ created using https://www.npmjs.com/package/create-vue-app
 # Docker Setup
 
 ### GCP
+
 - Compute Engine > Create a new,  Make a new instance (weve been using n1-standard-1)
 - Container Optimized OS, enable http/https
 - Network > VPC Network, create a new rule for tag `docker` with tcp `3000, 8080`
@@ -16,6 +17,7 @@ created using https://www.npmjs.com/package/create-vue-app
 
 
 ### Windows
+
 - On windows honestly a disaster
 - install docker for windows (enable virtualization and hyper v (if you have it if not set up vbox))
 - ???install minikube maybe???
@@ -31,6 +33,7 @@ created using https://www.npmjs.com/package/create-vue-app
 - git clone this
 
 ### Docker compose steps
+
 - make a private/public key pair for ssh, rename public key to `authorized_keys` and place in `./vm`
 - set your external host name (localhost if you're running locally. your external IP or domain if on GCP) with `export CONCORD_EXTERNAL_HOST="localhost"` 
 - docker-compose build
@@ -40,6 +43,16 @@ created using https://www.npmjs.com/package/create-vue-app
 - docker-compose run api rake db:migrate
 
 - ssh into your external ip at port 2222 to get into your development instance of debian
+
+# Kubernetes Setup
+
+- get kubectl and docker running locally (i use docker desktop)
+- `kubectl apply -f .` (in this directory)
+- I've been using ksync to do development without having to rebuild the docker images (https://ksync.github.io/ksync/)
+- `ksync init` then `ksync watch` in a background terminal
+- `kubectl get po` to get pod names, then
+- `ksync create --pod={api-pod} $(pwd)/ruby /usr/src/app`
+- `ksync create --pod={web-pod} $(pwd)/vue /app`
 
 # Prod
 
