@@ -5,6 +5,18 @@ npm install yarn -g
 
 created using https://www.npmjs.com/package/create-vue-app
 
+# Kubernetes Setup
+
+- get kubectl and docker running locally (i use docker desktop)
+- `kubectl apply -f .` (in this directory)
+- I've been using ksync to do development without having to rebuild the docker images (https://ksync.github.io/ksync/)
+- `ksync init` then `ksync watch` in a background terminal
+- `kubectl get po` to get pod names, then
+- ```
+ksync create --selector io.kompose.service=api $(pwd)/ruby /usr/src/app --reload=false --name=ruby --remote-read-only;
+ksync create --selector io.kompose.service=web $(pwd)/vue /app --reload=false --name=vue --remote-read-only;
+```
+
 # Docker Setup
 
 ### GCP
@@ -43,18 +55,6 @@ created using https://www.npmjs.com/package/create-vue-app
 - docker-compose run api rake db:migrate
 
 - ssh into your external ip at port 2222 to get into your development instance of debian
-
-# Kubernetes Setup
-
-- get kubectl and docker running locally (i use docker desktop)
-- `kubectl apply -f .` (in this directory)
-- I've been using ksync to do development without having to rebuild the docker images (https://ksync.github.io/ksync/)
-- `ksync init` then `ksync watch` in a background terminal
-- `kubectl get po` to get pod names, then
-- ```
-ksync create --selector io.kompose.service=api $(pwd)/ruby /usr/src/app --reload=false
-ksync create --selector io.kompose.service=web $(pwd)/vue /app
-```
 
 # Prod
 
