@@ -11,7 +11,6 @@ module UsersHelper
         uid: oauth_response.uid,
         token: oauth_response.credentials.token
       )
-
       #then we are logged on but not authed with this provider/account; create new auth provider, add/override onto user
     elsif !user && auth
       user = User.find_by_id(auth.user_id)
@@ -27,6 +26,9 @@ module UsersHelper
       )
       #then we have no account at all; create auth and create user; log me in
     end
+    #finally update auth and token info
+    auth.auth = oauth_response
+    auth.token = oauth_response.credentials.token
     return user
   end
 end

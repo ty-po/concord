@@ -51,8 +51,10 @@ created using https://www.npmjs.com/package/create-vue-app
 - I've been using ksync to do development without having to rebuild the docker images (https://ksync.github.io/ksync/)
 - `ksync init` then `ksync watch` in a background terminal
 - `kubectl get po` to get pod names, then
-- `ksync create --pod={api-pod} $(pwd)/ruby /usr/src/app`
-- `ksync create --pod={web-pod} $(pwd)/vue /app`
+- ```
+ksync create --selector io.kompose.service=api $(pwd)/ruby /usr/src/app --reload=false
+ksync create --selector io.kompose.service=web $(pwd)/vue /app
+```
 
 # Prod
 
