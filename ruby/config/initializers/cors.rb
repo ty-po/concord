@@ -9,7 +9,7 @@ Rails.application.config.action_controller.forgery_protection_origin_check = fal
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'dev.ty-po.com', 'localhost:30808'
+    origins 'dev.ty-po.com', Rails.application.config.web_host
 
     resource '*',
       headers: :any,
