@@ -57,7 +57,4 @@ created using https://www.npmjs.com/package/create-vue-app
 
 # TODO
 
-- wds server port forwarding
-- auth setup for ruby credentials (probably incant the edit function and do it manually)
-- route two containers together when in dev mode
-- make current "prod" deploy from containter//gitops
+- frontend integration of https://github.com/discordjs/discord.js and https://github.com/thelinmichael/spotify-web-api-node

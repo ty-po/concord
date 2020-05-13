@@ -1,0 +1,21 @@
+apiVersion: skaffold/v2beta2
+kind: Config
+metadata:
+  name: concord
+build:
+  artifacts:
+  - image: api
+    context: ruby
+  - image: web
+    context: vue
+deploy:
+  kubectl:
+    manifests:
+    - api-deployment.yaml
+    - api-secret.yaml
+    - api-service.yaml
+    - db-deployment.yaml
+    - db-secret.yaml
+    - db-service.yaml
+    - web-deployment.yaml
+    - web-service.yaml
