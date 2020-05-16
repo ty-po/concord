@@ -4,10 +4,16 @@ metadata:
   name: concord
 build:
   artifacts:
-  - image: api
+  - image: typo/api
     context: ruby
-  - image: web
+    sync:
+      infer:
+      - 'app/*'
+  - image: typo/web
     context: vue
+    sync:
+      infer:
+      - 'src/*'
 deploy:
   kubectl:
     manifests:

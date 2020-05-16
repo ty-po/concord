@@ -29,7 +29,7 @@ spec:
         - bash
         - -c
         - rm -rf /app/node_modules && ln -s /data/node_modules /app/ && yarn serve
-        image: web
+        image: typo/web
         #imagePullPolicy: Always
         name: web
         ports:

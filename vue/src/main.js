@@ -74,13 +74,7 @@ const app = new Vue({
     },
   },
   mounted() {
-    axios
-      // .get('https://api.ty-po.com/auth')
-      .get(`${this.api_host}/auth`)
-      .then((response) => {
-        console.log(response);
-        this.data = response;
-      });
+    this.$store.dispatch(AUTH_REQUEST);
     this.$cable.subscribe(
       {
         channel: 'ChatChannel',
