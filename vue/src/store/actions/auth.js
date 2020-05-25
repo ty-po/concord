@@ -1,4 +1,6 @@
-export const AUTH_REQUEST = 'AUTH_REQUEST';
-export const AUTH_SUCCESS = 'AUTH_SUCCESS';
-export const AUTH_ERROR = 'AUTH_ERROR';
-export const AUTH_LOGOUT = 'AUTH_LOGOUT';
+export default {
+  REQUEST: 'AUTH_REQUEST',
+  SUCCESS: 'AUTH_SUCCESS',
+  ERROR: 'AUTH_ERROR',
+  LOGOUT: 'AUTH_LOGOUT',
+};

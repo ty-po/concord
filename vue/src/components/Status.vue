@@ -14,7 +14,7 @@ export default {
     msg: String,
   },
   data() {
-    return [discord, spotify];
+    return { discord, spotify };
   },
 };
 </script>
