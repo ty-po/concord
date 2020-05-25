@@ -35,15 +35,21 @@ export default new Vuex.Store({
   actions: {
     [auth.REQUEST]: ({ commit, dispatch, getters }, user) => new Promise((resolve, reject) => {
       commit(auth.REQUEST);
-      axios({ url: `${getters.apiHost}/auth`, method: 'POST' })
+      axios({ url: `${getters.apiHost}/auth`, method: 'GET' })
         .then((resp) => {
-          const { token } = resp.data.find(a => a.provider === 'spotify');
-          localStorage.setItem('user-token', token); // store the token in localstorage
-          commit(auth.SUCCESS, token);
-          // you have your token, now log in your user :)
-          dispatch('USER_REQUEST'); // TODO
-          console.log(user); // TODO
-          resolve(resp);
+          if (resp.data !== null) {
+            const { token } = resp.data.find(a => a.provider === 'spotify');
+            localStorage.setItem('user-token', token); // store the token in localstorage
+            commit(auth.SUCCESS, token);
+            // you have your token, now log in your user :)
+            dispatch('USER_REQUEST'); // TODO
+            console.log(user); // TODO
+            resolve(resp);
+          } else {
+            commit(auth.ERROR);
+            localStorage.removeItem('user-token'); // if the request fails, remove any possible user token if possible
+            reject(new Error('null response from /auth'));
+          }
         })
         .catch((err) => {
           commit(auth.ERROR, err);

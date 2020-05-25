@@ -38,10 +38,18 @@ spec:
         #volumeMounts:
         #- mountPath: /app
         #  name: web-claim0
+        volumeMounts:
+          - name: config-volume
+            mountPath: /app/.env
+            subPath: api_host
       restartPolicy: Always
       serviceAccountName: ""
       #volumes:
       #- name: web-claim0
       #  persistentVolumeClaim:
       #    claimName: web-claim0
+      volumes:
+        - name: config-volume
+          configMap:
+            name: host-configmap
 status: {}

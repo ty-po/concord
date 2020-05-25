@@ -34,7 +34,10 @@ spec:
                 name: api-secret
                 key: master.key
           - name: CONCORD_EXTERNAL_HOST
-            value: http://192.168.64.5:30808
+            valueFrom:
+              configMapKeyRef:
+                name: host-configmap
+                key: web_host
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:

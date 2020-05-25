@@ -8,15 +8,17 @@ build:
     context: ruby
     sync:
       infer:
-      - 'app/*'
+        - '**/*.rb'
   - image: typo/web
     context: vue
     sync:
       infer:
-      - 'src/*'
+        - '**/*.js'
+        - '**/*.vue'
 deploy:
   kubectl:
     manifests:
+    - host-configmap.yaml
     - api-deployment.yaml
     - api-secret.yaml
     - api-service.yaml

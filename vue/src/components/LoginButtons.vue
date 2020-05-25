@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a :href="this.$root.api_host + '/auth/' + provider">{{ provider }}</a>
+    <a :href="this.$store.getters.apiHost + '/auth/' + provider">{{ provider }}</a>
   </div>
 </template>
 
