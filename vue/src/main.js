@@ -12,7 +12,7 @@ Vue.use(ActionCableVue, {
   debug: true,
   debugLevel: 'all',
   // connectionUrl: 'wss://api.ty-po.com',
-  connectionUrl: `${store.apiHost}/cable`,
+  connectionUrl: `${store.getters.apiHost}/cable`,
   connectImmediately: false,
 });
 

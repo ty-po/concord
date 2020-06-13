@@ -5,16 +5,13 @@
 </template>
 
 <script>
-import discord from 'discord.js';
-import spotify from 'spotify-web-api-node';
-
 export default {
   name: 'Status',
   props: {
     msg: String,
   },
   data() {
-    return { discord, spotify };
+    return { message: 'asdf' };
   },
 };
 </script>

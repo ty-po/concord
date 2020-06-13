@@ -1,7 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+
+import Discord from 'discord.js';
+import Spotify from 'spotify-web-api-node';
+
 import axios from 'axios';
 import auth from './actions/auth';
+
 
 Vue.use(Vuex);
 
@@ -14,6 +19,8 @@ export default new Vuex.Store({
     token: localStorage.getItem('user-token') || '',
     status: '',
     api_host: process.env.VUE_APP_API_HOSTNAME,
+    spotify: Spotify,
+    discord: Discord,
   },
   getters: {
     isAuthenticated: state => !!state.token,
