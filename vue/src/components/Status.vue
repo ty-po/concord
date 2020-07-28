@@ -1,14 +1,17 @@
 <template>
-  <div>
-    <a :href="this.$store.getters.apiHost + '/auth/' + provider">{{ provider }}</a>
+  <div class="status">
+    <p>{{ msg }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'LoginButtons',
+  name: 'Status',
   props: {
-    provider: String,
+    msg: String,
+  },
+  data() {
+    return { message: 'asdf' };
   },
 };
 </script>

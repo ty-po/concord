@@ -34,7 +34,10 @@ spec:
                 name: api-secret
                 key: master.key
           - name: CONCORD_EXTERNAL_HOST
-            value: http://192.168.64.2:30808
+            valueFrom:
+              configMapKeyRef:
+                name: host-configmap
+                key: web_host
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
@@ -46,7 +49,7 @@ spec:
         #- while true; do sleep 30; done;
         -  rm -f tmp/pids/server.pid && bundle exec rake db:create && bundle exec rake
           db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'
-        image: api
+        image: typo/api
         #imagePullPolicy: Always
         name: api
         ports:
