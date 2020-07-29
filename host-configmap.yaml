@@ -4,5 +4,12 @@ metadata:
   name: host-configmap
 data:
   api_host: |
-    VUE_APP_API_HOSTNAME=http://192.168.64.7:30000
-  web_host: http://192.168.64.7:30808
+    VUE_APP_API_HOSTNAME=http://192.168.64.8:30000
+  web_host: http://192.168.64.8:30808
+  vue_dev_host: |
+    module.exports = {
+        devServer: {
+          public: '192.168.64.8',
+          disableHostCheck: true
+        }
+    }

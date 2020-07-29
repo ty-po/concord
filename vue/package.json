@@ -69,11 +69,5 @@
   ],
   "jest": {
     "preset": "@vue/cli-plugin-unit-jest"
-  },
-  "vue": {
-    "devServer": {
-      "public": "192.168.64.7",
-      "disableHostCheck": true
-    }
   }
 }
