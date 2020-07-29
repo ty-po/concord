@@ -3,4 +3,5 @@ export default {
   SUCCESS: 'AUTH_SUCCESS',
   ERROR: 'AUTH_ERROR',
   LOGOUT: 'AUTH_LOGOUT',
+  LOGIN: 'AUTH_LOGIN',
 };

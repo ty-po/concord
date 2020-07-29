@@ -1,6 +1,11 @@
 <template>
   <div class="status">
     <p>{{ msg }}</p>
+    <p>{{ name }}</p>
+    <p>{{ artist }}</p>
+    <img :src="artwork">
+    <p>{{ progress }} / {{ length }}</p>
+    <p>{{ device }}</p>
   </div>
 </template>
 
@@ -10,8 +15,25 @@ export default {
   props: {
     msg: String,
   },
-  data() {
-    return { message: 'asdf' };
+  computed: {
+    name() {
+      return this.$store.state.player.item.name;
+    },
+    artist() {
+      return this.$store.state.player.item.artists[0].name;
+    },
+    artwork() {
+      return this.$store.state.player.item.album.images[0].url;
+    },
+    length() {
+      return this.$store.state.player.item.duration_ms / 1000;
+    },
+    progress() {
+      return this.$store.state.player.progress_ms / 1000;
+    },
+    device() {
+      return this.$store.state.player.device.name;
+    },
   },
 };
 </script>
