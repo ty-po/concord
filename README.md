@@ -11,6 +11,11 @@ created using https://www.npmjs.com/package/create-vue-app
 - `minikube start`
 - `skaffold dev`
 
+You will have to provide application keys to ruby via either master.key (for me) or by adding them like this:
+TODO: what to do here
+
+You will also need to edit host-configmap.yaml to be the address of your minikube instance (this can change between restarts).
+
 # Docker Setup
 
 ### GCP
