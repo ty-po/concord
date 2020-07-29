@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Status msg="param in here"/>
+    <Status msg="Spotify Status:"/>
   </div>
 </template>
 
