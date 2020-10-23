@@ -29,6 +29,7 @@ module UsersHelper
     #finally update auth and token info
     auth.auth = oauth_response
     auth.token = oauth_response.credentials.token
+    auth.save
     return user
   end
 end
