@@ -23,6 +23,7 @@ export default new Vuex.Store({
     api_host: process.env.VUE_APP_API_HOSTNAME,
     spotify: new Spotify(),
     discord: new Discord.Client(),
+    debug: '',
   },
   getters: {
     isAuthenticated: state => !!state.token,
@@ -77,6 +78,15 @@ export default new Vuex.Store({
         });
     }),
     [player.FETCH]: ({ commit, getters }) => new Promise((resolve, reject) => {
+      getters.spotify.getAudioFeaturesForTrack('3Qm86XLflmIXVm1wcwkgDK')
+        .then((data) => {
+          console.log(data);
+        });
+      getters.spotify.getAudioAnalysisForTrack('3Qm86XLflmIXVm1wcwkgDK')
+        .then((data) => {
+          console.log(data);
+        });
+
       getters.spotify.getMyCurrentPlaybackState({
       })
         .then((data) => {

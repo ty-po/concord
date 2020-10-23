@@ -4,8 +4,6 @@
     <p>{{ name }}</p>
     <p>{{ artist }}</p>
     <img :src="artwork">
-    <p>{{ progress }} / {{ length }}</p>
-    <p>{{ device }}</p>
   </div>
 </template>
 

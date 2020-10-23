@@ -1,5 +1,11 @@
 <template>
   <div class="transport">
+    <p>{{ msg }}</p>
+    <p>playing: {{ is_playing }}</p>
+    <p>repeat: {{ repeat_state }}</p>
+    <p>shuffle: {{ shuffle_state }}</p>
+    <p>{{ progress }} / {{ length }}</p>
+    <p>{{ device }}</p>
   </div>
 </template>
 
