@@ -20,6 +20,7 @@ export default new Vuex.Store({
     token: localStorage.getItem('user-token') || '',
     status: '',
     player: '',
+    player_insights: '',
     api_host: process.env.VUE_APP_API_HOSTNAME,
     spotify: new Spotify(),
     discord: new Discord.Client(),
@@ -31,6 +32,7 @@ export default new Vuex.Store({
     apiHost: state => state.api_host,
     spotify: state => state.spotify,
     discord: state => state.discord,
+    playing_id: state => state.player?.item?.id,
   },
   mutations: {
     [auth.REQUEST]: (state) => {
@@ -48,6 +50,9 @@ export default new Vuex.Store({
     [player.FETCH]: (state, data) => {
       state.player = data;
     },
+    [player.LOAD]: (state, data) => {
+      state.player_insights = data;
+    },
   },
   actions: {
     [auth.REQUEST]: ({ commit, dispatch, getters }, user) => new Promise((resolve, reject) => {
@@ -63,6 +68,7 @@ export default new Vuex.Store({
             commit(auth.SUCCESS, token);
             // you have the token now log in your user :)
             setInterval(() => { dispatch(player.FETCH); }, 3000); // TODO
+            dispatch(player.LOAD);
             console.log(user); // TODO
             resolve(resp);
           } else {
@@ -77,25 +83,35 @@ export default new Vuex.Store({
           reject(err);
         });
     }),
-    [player.FETCH]: ({ commit, getters }) => new Promise((resolve, reject) => {
-      getters.spotify.getAudioFeaturesForTrack('3Qm86XLflmIXVm1wcwkgDK')
-        .then((data) => {
-          console.log(data);
-        });
-      getters.spotify.getAudioAnalysisForTrack('3Qm86XLflmIXVm1wcwkgDK')
-        .then((data) => {
-          console.log(data);
-        });
-
+    [player.FETCH]: ({ commit, dispatch, getters }) => new Promise((resolve, reject) => {
       getters.spotify.getMyCurrentPlaybackState({
       })
         .then((data) => {
-          // Output items
-          commit(player.FETCH, data.body);
-          // TODO: Marshal/structure this to reduce side of stored obj
+          console.log(data.body);
+          if (getters.playing_id !== data.body.item.id) {
+            commit(player.FETCH, data.body);
+            dispatch(player.LOAD);
+          } else {
+            commit(player.FETCH, data.body);
+          }
           resolve(data);
         }, (err) => {
-          // console.log('Something went wrong!', err);
+          reject(new Error('rip', err));
+        });
+    }),
+    [player.LOAD]: ({ commit, getters }) => new Promise((resolve, reject) => {
+      getters.spotify.getAudioFeaturesForTrack(getters.playing_id)
+        .then((features) => {
+          getters.spotify.getAudioAnalysisForTrack(getters.playing_id)
+            .then((analysis) => {
+              // Output items
+              const data = { features: features.body, analysis: analysis.body };
+              commit(player.LOAD, data);
+              resolve(data);
+            }, (err) => {
+              reject(new Error('rip', err));
+            });
+        }, (err) => {
           reject(new Error('rip', err));
         });
     }),
